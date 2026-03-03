@@ -1,3 +1,8 @@
+using WebApplication.Application.Interfaces;
+using WebApplication.Application.Services;
+using WebApplication.Infastructure;
+using WebApplication.Infastructure.Repository;
+
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +10,9 @@ var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddScoped<ITesteService, TesteService>();
+builder.Services.AddScoped<ITesteRepository, TesteRepository>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
