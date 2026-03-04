@@ -2,6 +2,7 @@
 using WebApplication.Application.Interfaces;
 using WebApplication.Application.Services;
 using WebApplication.Infastructure.Persistence;
+using WebApplication.Infastructure.Repository;
 
 namespace WebApplication.Infastructure
 {
@@ -12,8 +13,8 @@ namespace WebApplication.Infastructure
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<AppDbContext>(option => option.UseNpgsql(connectionString));
-            //services.AddScoped<ITesteService, TesteService>();
-            //services.AddScoped<ITesteRepository, ITesteRepository>();
+            services.AddScoped<ITesteService, TesteService>();
+            services.AddScoped<ITesteRepository, TesteRepository>();
 
             return services;
         }
